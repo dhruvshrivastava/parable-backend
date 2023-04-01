@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="h-full">
+<head>
+    <title>Text Analysis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+</head>
+<body class="flex flex-col justify-between min-h-full bg-gray-100">
+    <div class="flex flex-row">
+        <div class="sidebar w-1/5 bg-gray-800 text-gray-100 p-4">
+            <h1 class="text-xl font-bold mb-4">Text Analysis</h1>
+            <ul class="text-lg">
+                <li class="py-2"><a href="#" class="hover:text-green-500">Sentiment Analysis</a></li>
+                <li class="py-2"><a href="#" class="hover:text-green-500">Topic Modelling</a></li>
+                <li class="py-2"><a href="#" class="hover:text-green-500">Entity Recognition</a></li>
+            </ul>
+        </div>
+        <div class="container mx-auto px-4 py-8 max-w-2xl shadow-lg bg-white w-4/5">
+            <h1 class="text-center text-gray-700 text-3xl font-bold mb-8">Text Analysis</h1>
+            <form action="/topic-modelling" method="post" enctype="multipart/form-data" class="flex flex-col space-y-4">
+                <label for="file" class="text-gray-700 font-medium text-lg">Upload File</label>
+                <input type="file" id="file" name="file" accept=".csv,.txt, .doc, .docx, .pdf" class="p-4 rounded-md border-2 border-gray-300 text-lg">
+                
+                <label for="custom_parameters" class="text-gray-700 font-medium text-lg">Add Custom Parameters</label>
+                <input type="text" id="custom_parameters" name="custom_parameters" class="p-4 rounded-md border-2 border-gray-300 text-lg">
+                
+                <label for="insight" class="text-gray-700 font-medium text-lg">Tell us a little bit about your data</label>
+                <input type="text" id="insight" name="insight" class="p-4 rounded-md border-2 border-gray-300 text-lg">
+
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white text-lg font-medium py-4 px-8 rounded-md transition duration-300 ease-in-out">Analyse</button>
+            </form>
+            
+            {% if result %}
+            <div class="response bg-gray-200 rounded-md border-2 border-gray-300 p-4 whitespace-pre-line break-words mt-8">
+                <h2 class="text-lg font-medium mb-2">Summary</h2>
+                <div class="result">{{ summary }}</div>
+			</div>
+            <div class="response bg-gray-200 rounded-md border-2 border-gray-300 p-4 whitespace-pre-line break-words mt-8">
+                <h2 class="text-lg font-medium mb-2">Text Output</h2>
+                <div class="result">{{ result }}</div>
+            </div>
+            <div class="response bg-gray-200 rounded-md border-2 border-gray-300 p-4 whitespace-pre-line break-words mt-8">
+                <h2 class="text-lg font-medium mb-2">Graph 1</h2>
+                <!-- Graph 1 goes here -->
+            </div>
+            <div class="response bg-gray-200 rounded-md border-2 border-gray-300 p-4 whitespace-pre-line break-words mt-8">
+                <h2 class="text-lg font-medium mb-2">Graph 1</h2>
+                <!-- Graph 1 goes here -->
+            </div>
+            {% endif %}

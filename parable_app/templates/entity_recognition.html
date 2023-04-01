@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html class="h-full">
+<head>
+    <title>Text Analysis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+</head>
+<body class="flex flex-col justify-between min-h-full bg-gray-100">
+    <div class="container mx-auto px-4 py-8 max-w-2xl shadow-lg bg-white">
+        <h1 class="text-center text-gray-700 text-3xl font-bold mb-8">Sentiment Analysis</h1>
+        <form action="/entity-recognition" method="post" enctype="multipart/form-data" class="flex flex-col space-y-4">
+            <p class="text-gray-700 font-medium text-lg">Import Data</p>
+            <div class="flex items-center space-x-4">
+                <label for="file" class="text-gray-700 font-medium text-lg">Upload File</label>
+                <input type="file" id="file" name="file" accept=".csv,.txt" class="p-4 rounded-md border-2 border-gray-300 text-lg">
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <label for="text" class="text-gray-700 font-medium text-lg">Plain Text</label>
+                <textarea id="text" name="text" rows="4" class="p-4 rounded-md border-2 border-gray-300 text-lg"></textarea>
+            </div>
+            <label for="custom_parameters" class="text-gray-700 font-medium text-lg">Add Custom Parameters</label>
+            <input type="text" id="custom_parameters" name="custom_parameters" class="p-4 rounded-md border-2 border-gray-300 text-lg">
+        <label for="insight" class="text-gray-700 font-medium text-lg">Tell us a little bit about your data</label>
+        <input type="text" id="insight" name="insight" class="p-4 rounded-md border-2 border-gray-300 text-lg">
+
+        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white text-lg font-medium py-4 px-8 rounded-md transition duration-300 ease-in-out">Analyse</button>
+    </form>
+    
+    <div class="response bg-gray-200 rounded-md border-2 border-gray-300 p-4 whitespace-pre-line break-words mt-8">
+        <!-- Response from Flask app will go here -->
+        {% if result %}
+        <div class="result">{{ result }}</div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
